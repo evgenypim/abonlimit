@@ -1,35 +1,33 @@
 #define ABONLIMIT_PRIV(x) ((struct xt_abonlimit_info *)(x))
 
-#include <linux/init.h>
 #include <linux/module.h>
-#include <linux/kernel.h>
 #include <linux/skbuff.h>
 #include <linux/netfilter/x_tables.h>
+#include "xt_abonlimit.h"
 
 MODULE_AUTHOR("Evgeny Pimenov <e.pimenov@carbonsoft.ru>");
 MODULE_DESCRIPTION("Xtables: limit per abonent packets");
 MODULE_LICENSE("GPL");
 
-
 static bool abonlimit_mt(const struct sk_buff *skb, const struct xt_match_param *par)
 {
-	const struct xt_abonlimit_info *abonlimit_info = ABONLIMIT_PRIV(par->matchinfo);
-	printk("--!abonlimit_mt");
+	const struct xt_abonlimit_info *abonlimit_info = par->matchinfo;
+	printk("--!abonlimit_mt, %p", abonlimit_info);
 	return true;
 }
 
 
 static bool abonlimit_mt_check(const struct xt_mtchk_param *par)
 {
-	struct xt_abonlimit_info *abonlimit_info = ABONLIMIT_PRIV(par->matchinfo);
-	printk("--!abonlimit_mt_check");
+	struct xt_abonlimit_info *abonlimit_info = par->matchinfo;
+	printk("--!abonlimit_mt_check %p", abonlimit_info);
 	return true;
 }
 
 static void abonlimit_mt_destroy(const struct xt_mtdtor_param *par)
 {
-	printk("--!abonlimit_mt_destroy")
 	struct xt_abonlimit_info *abonlimit_info = ABONLIMIT_PRIV(par->matchinfo);
+	printk("--!abonlimit_mt_destroy, %p", abonlimit_info);
 }
 
 static struct xt_match xt_abonlimit_mt_reg[] __read_mostly = {
@@ -57,3 +55,4 @@ static void __exit abonlimit_mt_exit(void)
 	xt_unregister_matches(xt_abonlimit_mt_reg,
 			ARRAY_SIZE(xt_abonlimit_mt_reg));
 }
+
