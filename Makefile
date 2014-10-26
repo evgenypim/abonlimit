@@ -12,12 +12,12 @@ libxt_abonlimit:
 reinstall: uninstall install
 
 install:
-	cp libxt_abonlimit.so /usr/lib/iptables/libxt_abonlimit.so
-	insmod abonlimit.ko
+	sudo cp libxt_abonlimit.so /usr/lib/iptables/libxt_abonlimit.so
+	sudo insmod abonlimit.ko
 
 uninstall:
-	rm -rf /usr/lib/iptables/libxt_abonlimit.so
-	rmmod abonlimit
+	sudo rm -rf /usr/lib/iptables/libxt_abonlimit.so
+	sudo rmmod abonlimit
 
 clean:
 	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean; rm *.so

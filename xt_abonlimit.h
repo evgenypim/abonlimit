@@ -8,7 +8,8 @@
 #define ABONLIMIT_PRIV(x) ((struct xt_abonlimit_info *)(x))
 
 struct xt_abonlimit_info {
-	char *info_string;
+	int period;
+	int limit;
 };
 
 #endif

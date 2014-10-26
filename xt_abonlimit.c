@@ -62,6 +62,7 @@ static int __init abonlimit_mt_init(void)
 
 static void __exit abonlimit_mt_exit(void)
 {
+	printk("--!abonlimit_mt_exit");
 	xt_unregister_matches(xt_abonlimit_mt_reg,
 			ARRAY_SIZE(xt_abonlimit_mt_reg));
 }
