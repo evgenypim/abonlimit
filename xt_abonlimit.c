@@ -2,6 +2,7 @@
 
 #include <linux/module.h>
 #include <linux/skbuff.h>
+#include <linux/version.h>
 #include <linux/netfilter/x_tables.h>
 #include "xt_abonlimit.h"
 
@@ -9,12 +10,21 @@ MODULE_AUTHOR("Evgeny Pimenov <e.pimenov@carbonsoft.ru>");
 MODULE_DESCRIPTION("Xtables: limit per abonent packets");
 MODULE_LICENSE("GPL");
 
+#if LINUX_VERSION_CODE <= KERNEL_VERSION(2, 6, 32)
 static bool abonlimit_mt(const struct sk_buff *skb, const struct xt_match_param *par)
 {
 	const struct xt_abonlimit_info *abonlimit_info = par->matchinfo;
 	printk("--!abonlimit_mt, %p", abonlimit_info);
 	return true;
 }
+#else
+static bool abonlimit_mt(const struct sk_buff *skb, const struct xt_action_param *par)
+{
+	        const struct xt_abonlimit_info *abonlimit_info = par->matchinfo;
+		        printk("--!abonlimit_mt, %p", abonlimit_info);
+			        return true;
+}
+#endif
 
 
 static bool abonlimit_mt_check(const struct xt_mtchk_param *par)
@@ -55,4 +65,5 @@ static void __exit abonlimit_mt_exit(void)
 	xt_unregister_matches(xt_abonlimit_mt_reg,
 			ARRAY_SIZE(xt_abonlimit_mt_reg));
 }
+
 

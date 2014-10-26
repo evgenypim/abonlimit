@@ -1,5 +1,6 @@
 obj-m := abonlimit.o
 abonlimit-objs := xt_abonlimit.o
+
 all: libxt_abonlimit modules
 
 modules:
@@ -7,6 +8,16 @@ modules:
 
 libxt_abonlimit:
 	$(CC) -shared libxt_abonlimit.c -fPIC -o libxt_abonlimit.so
+
+reinstall: uninstall install
+
+install:
+	cp libxt_abonlimit.so /usr/lib/iptables/libxt_abonlimit.so
+	insmod abonlimit.ko
+
+uninstall:
+	rm -rf /usr/lib/iptables/libxt_abonlimit.so
+	rmmod abonlimit
 
 clean:
 	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean; rm *.so

@@ -1,2 +1,13 @@
 *.so
 *.ko
+.abonlimit.ko.cmd
+.abonlimit.mod.o.cmd
+.abonlimit.o.cmd
+.tmp_versions
+.xt_abonlimit.o.cmd
+Module.symvers
+abonlimit.mod.c
+abonlimit.mod.o
+abonlimit.o
+modules.order
+xt_abonlimit.o
