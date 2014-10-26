@@ -35,7 +35,7 @@ static int abonlimit_parse(int c, char **argv, int invert, unsigned int *flags, 
 static void abonlimit_check(unsigned int flags)
 {
 	xtables_error(PARAMETER_PROBLEM,
-				"abonlimit match: problem "
+				"abonlimit match: problem ");
 }
 
 static void abonlimit_print(const void *ip, const struct xt_entry_match *match, int numeric)
@@ -57,7 +57,7 @@ static struct xtables_match abonlimit_mt_reg[] = {
 		.family = NFPROTO_UNSPEC,
 		.version = XTABLES_VERSION,
 		.size = XT_ALIGN(sizeof(struct xt_abonlimit_info)),
-		.userspacesize = offsetof(struct xt_abonlimit_info, config),
+		.userspacesize = offsetof(struct xt_abonlimit_info, info_string),
 		.help = abonlimit_help,
 		.init = abonlimit_init,
 		.parse = abonlimit_parse,
