@@ -30,6 +30,8 @@
 
 
 *.o.cmd
+*.ko.cmd
 Module.symvers
 *.mod.c
 modules.order
+.tmp_versions
