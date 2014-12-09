@@ -1,13 +1,35 @@
-*.so
+# Object files
+*.o
 *.ko
-.abonlimit.ko.cmd
-.abonlimit.mod.o.cmd
-.abonlimit.o.cmd
-.tmp_versions
-.xt_abonlimit.o.cmd
+*.obj
+*.elf
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+
+*.o.cmd
 Module.symvers
-abonlimit.mod.c
-abonlimit.mod.o
-abonlimit.o
+*.mod.c
 modules.order
-xt_abonlimit.o
