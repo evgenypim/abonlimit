@@ -8,9 +8,6 @@
 #include <xtables.h>
 #include <stddef.h>
 #include "xt_abonlimit.h"
-#ifndef ARRAY_SIZE
-#define ARRAY_SIZE(x) (sizeof(x) / sizeof(*(x)))
-#endif
 // #define ABONLIMIT_PRIV(x) ((struct xt_abonlimit_info *)(x))
 
 static void abonlimit_help(void)
